@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserOutlined, LockOutlined, SettingOutlined, ProductOutlined, TruckOutlined, LogoutOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Avatar, Breadcrumb, Card, Image, Layout, Menu, theme } from 'antd';
@@ -7,7 +7,8 @@ import { AddProductButton } from './Components';
 
 const { Header, Content, Sider } = Layout;
 import img from './assets/logo.png'
-import { Products } from './pages';
+import { Orders, Products } from './pages';
+import { API_URL } from './lib';
 const items1: MenuProps['items'] = [{
   key: '/logout',
   icon: <LogoutOutlined />,
@@ -37,46 +38,27 @@ const items2 = [
   }
 ];
 
-const ProductData = [
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/stator-coil-plate-assembly-for-bajaj-platina-753_300x.jpg?v=1663149834',
-    productPrice: 12000,
-    productOldPrice: 23000,
-    productDescripton: 'qwertyuiolkjhgfdsaxcvbnmhrtestrdyfugih'
-  },
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/stator-coil-plate-assembly-for-bajaj-platina-kick-start-new-289_300x.jpg?v=1663151206',
-    productPrice: 17000,
-    productOldPrice: 23000,
-    productDescripton: 'ers45yfughilbhgcytugff'
-  },
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/cam-shaft-assembly-for-bajaj-platina-ct-100-deluxe-discover-112-805_300x.webp?v=1673416277',
-    productPrice: 15000,
-    productOldPrice: 42000,
-    productDescripton: 'jhfxtdrdyufutxcyjvhcgukytftygu'
-  },
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/rear-brake-drum-for-bajaj-platina-130_300x.jpg?v=1675759581',
-    productPrice: 20000,
-    productOldPrice: 38000,
-    productDescripton: 'bfgxtfyjgghvubghctyfjvgchfxytug'
-  },
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/387B_300x.jpg?v=1687875130',
-    productPrice: 16000,
-    productOldPrice: 33000,
-    productDescripton: 'jhfxtdrdyufutxcyjvhcgukytftygu'
-  },
-  {
-    productImageUrl: 'https://cdn.shopify.com/s/files/1/0415/7846/3390/products/rr-unit-for-bajaj-discover-100-4gear-platina-es-boxer-bm-150-5-pin-jn00-regulator-rectifier-920_300x.jpg?v=1663070447',
-    productPrice: 14000,
-    productOldPrice: 25000,
-    productDescripton: 'jhfxtdrdyufutxcyjvhcgukytftygu'
-  }
-]
-
 const App: React.FC = () => {
+  const [ProductData, setProductData] = useState([
+    {
+      productID: '',
+      productImageUrl: '',
+      productDiscountPrice: null,
+      productOriginalPrice: null,
+      productDescription: null,
+      productRating: null
+    }
+  ])
+  useEffect(() => {
+    async function fetchProductData() {
+      const response = await fetch(`${API_URL}/products/`)
+      const productData = await response.json();
+      const { data } = productData
+      setProductData(data)
+    }
+    fetchProductData();
+  }, [])
+  console.log(ProductData)
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -128,14 +110,17 @@ const App: React.FC = () => {
                 borderRadius: borderRadiusLG,
               }}
             >
-              {ProductData.map(product => (
+              {/* {ProductData.map(product => (
                 <Products
+                  productID={product.productID}
                   productImageUrl={product.productImageUrl}
-                  productPrice={product.productPrice}
-                  productOldPrice={product.productOldPrice}
-                  productDescripton={product.productDescripton}
+                  productDiscountPrice={product.productDiscountPrice}
+                  productOriginalPrice={product.productOriginalPrice}
+                  productDescription={product.productDescription}
+                  productRating={product.productRating}
                 />
-              ))}
+              ))} */}
+              <Orders />
             </Content>
           </Card>
         </Layout>

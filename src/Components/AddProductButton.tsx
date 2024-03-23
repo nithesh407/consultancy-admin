@@ -5,7 +5,7 @@ import { AddProductModal } from '.';
 const AddProductButton: React.FC = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-    const handleCreatePostClick = () => {
+    const handleCreateProductClick = () => {
         setModalVisible(true);
     };
 
@@ -17,7 +17,7 @@ const AddProductButton: React.FC = () => {
         <>
             <Button
                 type="primary"
-                onClick={handleCreatePostClick}
+                onClick={handleCreateProductClick}
             >
                 Add New Product
             </Button>

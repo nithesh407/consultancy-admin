@@ -18,6 +18,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
     const [productDescription, setProductDescription] = useState<string | null>(null);
     const [productOriginalPrice, setProductOriginalPrice] = useState<string | null>(null);
     const [productDiscountPrice, setProductDiscountPrice] = useState<string | null>(null);
+    const [productRating, setProductRating] = useState<string>('');
     const [showDragger, setShowDragger] = useState<boolean>(true);
     useEffect(() => {
         if (!visible) {
@@ -27,7 +28,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
     }, [visible]);
 
     const handleUploadChange = (info: any) => {
-        const { status, originFileObj } = info.file;
+        const { originFileObj } = info.file;
         // if (status === 'done') {
         setUploadedFile(originFileObj);
         setFile(originFileObj);
@@ -45,6 +46,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
                 formData.append('productDescription', productDescription);
                 formData.append('productOriginalPrice', productOriginalPrice);
                 formData.append('productDiscountPrice', productDiscountPrice);
+                formData.append('productRating', productRating);
                 const response = await fetch('http://localhost:4000/api/v1/products', {
                     method: 'POST',
                     body: formData
@@ -54,7 +56,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
                     message.success(res.message)
                     setTimeout(() => {
                         window.location.reload()
-                    }, 1000)
+                    }, 1800)
                 } else {
                     message.error(res.message)
                 }
@@ -86,7 +88,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
             footer={null}
         >
             {showDragger && (
-                <ImgCrop aspect={5 / 4}>
+                <ImgCrop showGrid aspect={5 / 4}>
                     <Dragger onChange={handleUploadChange} showUploadList={false}>
                         <p className="ant-upload-drag-icon">
                             <InboxOutlined />
@@ -107,10 +109,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
                     <div>
                         <Typography.Title level={5}>Original Price</Typography.Title>
                         <Input
-                            count={{
-                                show: true,
-                                max: 300,
-                            }}
                             placeholder='Product Original Price'
                             onChange={(e) => setProductOriginalPrice(e.target.value)}
                         />
@@ -118,10 +116,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
                     <div>
                         <Typography.Title level={5}>Discount Price</Typography.Title>
                         <Input
-                            count={{
-                                show: true,
-                                max: 300,
-                            }}
                             placeholder='Product Discount Price'
                             onChange={(e) => setProductDiscountPrice(e.target.value)}
                         />
@@ -131,10 +125,17 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ visible, handleCancel
                         <Input
                             count={{
                                 show: true,
-                                max: 300,
+                                max: 600,
                             }}
-                            placeholder='Post Description'
+                            placeholder='Product Description'
                             onChange={(e) => setProductDescription(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <Typography.Title level={5}>Rating</Typography.Title>
+                        <Input
+                            placeholder='Product Rating for 5'
+                            onChange={(e) => setProductRating(e.target.value)}
                         />
                     </div>
                 </>
