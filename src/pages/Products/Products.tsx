@@ -57,7 +57,7 @@ const Products: React.FC = () => {
             <Content
                 className={styles['scrollable-list']}
                 style={{
-                    height: '73.4vh',
+                    // height: '73.4vh',
                     padding: 20,
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3,1fr)',
