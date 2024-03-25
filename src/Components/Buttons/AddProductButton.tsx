@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { AddProductModal } from '.';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { AddProductModal } from '..';
 const AddProductButton: React.FC = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -17,9 +18,11 @@ const AddProductButton: React.FC = () => {
         <>
             <Button
                 type="primary"
+                ghost
+                style={{ marginTop: -10 }}
                 onClick={handleCreateProductClick}
             >
-                Add New Product
+                Add Product <ShoppingCartOutlined />
             </Button>
             <AddProductModal visible={modalVisible} handleCancel={handleModalCancel} />
         </>
