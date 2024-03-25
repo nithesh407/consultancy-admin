@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Card, Image, Typography, Divider, Popconfirm, message, Form, Input, Button, Space, Rate } from 'antd';
+import { Card, Image, Typography, Popconfirm, message, Form, Input, Button, Space, Rate } from 'antd';
 import { API_URL } from '../../lib';
 const { Text } = Typography;
 const { Meta } = Card;

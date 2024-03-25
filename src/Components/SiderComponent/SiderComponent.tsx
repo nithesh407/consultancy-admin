@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Layout, Menu, theme } from 'antd';
+import { Avatar, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { ProductOutlined, TruckOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -30,9 +30,7 @@ const items2 = [
 
 const SiderComponent: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+
 
     return (
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} width={240} theme='dark' >
