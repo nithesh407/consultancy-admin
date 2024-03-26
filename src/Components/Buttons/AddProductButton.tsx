@@ -18,8 +18,6 @@ const AddProductButton: React.FC = () => {
         <>
             <Button
                 type="primary"
-                ghost
-                style={{ marginTop: -10 }}
                 onClick={handleCreateProductClick}
             >
                 Add Product <ShoppingCartOutlined />

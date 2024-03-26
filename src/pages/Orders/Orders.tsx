@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Card, ConfigProvider, Layout, theme } from 'antd';
 import styles from './Orders.module.css'
-import { OrdersComponent } from '../../Components';
+import { OrdersComponent, SearchButton } from '../../Components';
 
 const { Content } = Layout;
 
@@ -31,7 +31,27 @@ const ORDERS_DATA = [
     }
 ]
 
+interface T {
+    orderNumber: number
+    productPrice: number
+    productQuantity: number
+    productDescription: string
+    productImageUrl: string
+}
+
+
 const Orders: React.FC = () => {
+    const [filteredOrders, setFilteredOrders] = useState<T[]>([]);
+
+    const handleSearch = (value: string) => {
+        const filtered = ORDERS_DATA.filter((order) =>
+            order.productDescription.toLowerCase().includes(value.toLowerCase())
+        );
+        setFilteredOrders(filtered);
+    };
+    useEffect(() => {
+        setFilteredOrders(ORDERS_DATA)
+    }, [])
     const {
         token: { borderRadiusLG },
     } = theme.useToken();
@@ -57,7 +77,8 @@ const Orders: React.FC = () => {
                     </Breadcrumb>
                 </ConfigProvider>
             }
-            extra={<SettingOutlined style={{ color: 'white' }} />}
+
+            extra={<SearchButton onSearch={handleSearch} placeholder="Orders" />}
         >
             <Content
                 className={styles['scrollable-list']}
@@ -71,7 +92,7 @@ const Orders: React.FC = () => {
                     borderRadius: borderRadiusLG,
                 }}
             >
-                {ORDERS_DATA.map((order) => (
+                {filteredOrders.map((order) => (
                     <OrdersComponent
                         orderNumber={order.orderNumber}
                         productImageUrl={order.productImageUrl}

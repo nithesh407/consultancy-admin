@@ -6,6 +6,8 @@ import CustomerDetailComponent from "./CustomerDetailComponent/CustomerDetailCom
 import AccountComponent from "./AccountComponent/AccountComponent";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 import SiderComponent from "./SiderComponent/SiderComponent";
+import SearchButton from "./Buttons/SearchButton";
+import EmptyComponent from "./EmptyComponent/EmptyComponent";
 export {
     AddProductModal,
     AddProductButton,
@@ -14,5 +16,7 @@ export {
     CustomerDetailComponent,
     AccountComponent,
     HeaderComponent,
-    SiderComponent
+    SiderComponent,
+    SearchButton,
+    EmptyComponent
 }
