@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootLayout, Account, CustomerDetails, Orders, Products } from './pages';
+import { RootLayout, Account, CustomerDetails, Orders, Products, Signin } from './pages';
 import { loader as productLoader } from './pages/Products/Products';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
       { path: 'customerdetails', element: <CustomerDetails /> },
       { path: 'account', element: <Account /> }
     ]
+  },
+  {
+    path: '/signin',
+    element: <Signin />
   }
 ])
 
