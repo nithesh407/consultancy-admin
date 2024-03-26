@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Card, Flex, Form, Grid, Input, Layout, Typography, theme, ConfigProvider, Image, message } from "antd";
-import { LockOutlined, MailOutlined, UserOutlined, PhoneOutlined } from "@ant-design/icons";
+import { Button, Flex, Form, Grid, Input, Layout, Typography, theme, ConfigProvider, Image, message } from "antd";
+import { LockOutlined, PhoneOutlined } from "@ant-design/icons";
 import intro from "../../assets/intro.mp4"
 import img from "../../assets/logo.png"
 const { useToken } = theme

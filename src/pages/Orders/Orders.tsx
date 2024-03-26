@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Card, ConfigProvider, Layout, theme } from 'antd';
 import styles from './Orders.module.css'
 import { OrdersComponent, SearchButton } from '../../Components';
