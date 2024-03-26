@@ -3,6 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Card, Layout, theme, ConfigProvider } from "antd";
 import { ProductComponent, AddProductButton, SearchButton, EmptyComponent } from "../../Components";
 import { API_URL } from "../../lib";
+import { useLoaderData } from "react-router-dom";
 import styles from "./Products.module.css";
 
 const { Content } = Layout;
@@ -17,20 +18,13 @@ interface Product {
 }
 
 const Products: React.FC = () => {
+  const data = useLoaderData()
   const [productData, setProductData] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-
   useEffect(() => {
-    async function fetchProductData() {
-      const response = await fetch(`${API_URL}/products/`);
-      const productData = await response.json();
-      const { data } = productData;
-      setProductData(data);
-      setFilteredProducts(data);
-    }
-    fetchProductData();
-  }, []);
-
+    setProductData(data as Product[]);
+    setFilteredProducts(data as Product[]);
+  }, [])
   const handleSearch = (value: string) => {
     const filtered = productData.filter((product) =>
       product.productDescription.toLowerCase().includes(value.toLowerCase())
@@ -42,7 +36,6 @@ const Products: React.FC = () => {
     token: { borderRadiusLG },
   } = theme.useToken();
 
-  console.log(filteredProducts.length === 0);
 
   return (
     <Card
@@ -105,3 +98,11 @@ const Products: React.FC = () => {
 };
 
 export default Products;
+
+
+export async function loader() {
+  const response = await fetch(`${API_URL}/products/`);
+  const productData = await response.json();
+  const { data } = productData;
+  return data
+}

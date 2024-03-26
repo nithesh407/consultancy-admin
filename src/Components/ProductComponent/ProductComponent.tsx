@@ -95,9 +95,8 @@ const ProductComponent: React.FC<T> = ({ productID, productImageUrl, productDesc
                     <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <div>
-                                <Text style={{ fontSize: 15 }}>Rs.{productDiscountPrice}</Text> <Text type='secondary' style={{ fontSize: 11 }} delete>Rs. {productOriginalPrice}</Text>
+                                <Text style={{ fontSize: 17 }}>₹{productDiscountPrice}</Text> <Text type='secondary' style={{ fontSize: 11 }} delete>₹ {productOriginalPrice}</Text>
                             </div>
-
                             <Rate allowHalf style={{ fontSize: 15, marginTop: 5 }} count={5} value={Number(productRating as number)} disabled />
                         </div>
                     </div>

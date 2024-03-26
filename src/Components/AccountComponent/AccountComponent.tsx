@@ -35,7 +35,7 @@ const AccountComponent: React.FC<AccountProps> = ({ name, email, phone, onEdit, 
                     )
                 }
             >
-                <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: '100%' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', height: 150 }}>
                     <div style={{ borderRadius: '50%', overflow: 'hidden' }}>
                         <Image height={100} width={100} src={"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"} />
                     </div>
