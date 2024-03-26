@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Card, Layout, theme, ConfigProvider } from "antd";
+import { Breadcrumb, Card, Layout, theme, ConfigProvider, Grid } from "antd";
 import { ProductComponent, AddProductButton, SearchButton, EmptyComponent } from "../../Components";
 import { API_URL } from "../../lib";
 import { useLoaderData } from "react-router-dom";
 import styles from "./Products.module.css";
 
 const { Content } = Layout;
+
 
 interface Product {
   productID: string;
@@ -18,6 +19,7 @@ interface Product {
 }
 
 const Products: React.FC = () => {
+  const screens = Grid.useBreakpoint();
   const data = useLoaderData()
   const [productData, setProductData] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -70,7 +72,7 @@ const Products: React.FC = () => {
       <Content
         className={styles["scrollable-list"]}
         style={{
-          height: "73.3vh",
+          height: screens.sm ? "73.3vh" : "auto",
           padding: 20,
           display: "grid",
           gridTemplateColumns: "repeat(3,1fr)",
