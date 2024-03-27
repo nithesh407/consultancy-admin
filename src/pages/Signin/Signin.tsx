@@ -13,7 +13,7 @@ const Signin: React.FC = () => {
     const navigate = useNavigate();
 
     const onFinish = async (values: any) => {
-        const response = await fetch(`${API_URL}/users/verify`, {
+        const response = await fetch(`${API_URL}/users/verify/admin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
