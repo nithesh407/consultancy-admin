@@ -5,11 +5,15 @@ import { Image, Layout, Menu } from 'antd';
 
 const { Header } = Layout;
 import img from '../../assets/logo.png'
+import { handleLogout } from '../../lib';
+
+
 
 const items1: MenuProps['items'] = [{
     key: '/logout',
     icon: <LogoutOutlined />,
-    label: 'Logout'
+    label: 'Logout',
+    onClick: handleLogout
 }]
 
 

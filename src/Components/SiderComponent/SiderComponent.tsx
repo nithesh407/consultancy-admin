@@ -21,11 +21,11 @@ const items2 = [
         icon: <UserOutlined />,
         label: "Customer Details"
     },
-    {
-        key: "/account",
-        icon: <LockOutlined />,
-        label: "Account"
-    }
+    // {
+    //     key: "/account",
+    //     icon: <LockOutlined />,
+    //     label: "Account"
+    // }
 ];
 
 const SiderComponent: React.FC = () => {

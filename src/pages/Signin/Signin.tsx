@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Flex, Form, Grid, Input, Layout, Typography, theme, ConfigProvider, Image, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import { LockOutlined, PhoneOutlined } from "@ant-design/icons";
+import { API_URL } from "../../lib";
 import intro from "../../assets/intro.mp4"
 import img from "../../assets/logo.png"
 const { useToken } = theme
@@ -8,9 +10,20 @@ const { useToken } = theme
 const Signin: React.FC = () => {
     const { token } = useToken();
     const screens = Grid.useBreakpoint();
+    const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
-        console.log("Received values of form: ", values);
+    const onFinish = async (values: any) => {
+        const response = await fetch(`${API_URL}/users/verify`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values),
+            credentials: 'include'
+        })
+        console.log(response)
+        const data = await response.json();
+        data.status === "fail" ? message.error(data.message) : navigate('/')
     };
 
     return (
@@ -62,14 +75,14 @@ const Signin: React.FC = () => {
                                 >
 
                                     <Form.Item
-                                        name="Phone"
-                                        rules={[
-                                            {
-                                                type: "number",
-                                                required: true,
-                                                message: "Please input your Mobile Number!",
-                                            },
-                                        ]}
+                                        name="phone"
+                                    // rules={[
+                                    //     {
+                                    //         type: "number",
+                                    //         required: true,
+                                    //         message: "Please input your Mobile Number!",
+                                    //     },
+                                    // ]}
                                     >
                                         <Input prefix={<PhoneOutlined />} placeholder="Phone" />
                                     </Form.Item>
