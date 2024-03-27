@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { RootLayout, Account, CustomerDetails, Orders, Products, Signin } from './pages';
+import { RootLayout, CustomerDetails, Orders, Products, Signin } from './pages';
 import { loader as productLoader } from './pages/Products/Products';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { handleLogin } from './lib';

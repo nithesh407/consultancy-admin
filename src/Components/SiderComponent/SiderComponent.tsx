@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import { ProductOutlined, TruckOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
+import { ProductOutlined, TruckOutlined, UserOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
